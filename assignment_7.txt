@@ -1,0 +1,101 @@
+1.
+
+import numpy as np
+
+def count_layers(arr):
+    arr1 = np.unique(arr)
+    return arr1.size
+
+print(count_layers([ "AAAA", "ABBA", "AAAA" ]))
+print(count_layers([ "AAAAAAAAA", "ABBBBBBBA", "ABBAAABBA", "ABBBBBBBA", "AAAAAAAAA" ]) )
+print(count_layers([ "AAAAAAAAAAA", "AABBBBBBBAA", "AABCCCCCBAA", "AABCAAACBAA", "AABCADACBAA", "AABCAAACBAA", "AABCCCCCBAA", "AABBBBBBBAA", "AAAAAAAAAAA" ]) )
+
+2.
+
+import numpy as np
+
+def unique_styles(l):
+    l1 = []
+    for item in l:
+        item = item.split(',')
+        for j in item:
+            l1.append(j) 
+    
+    return len(set(l1))
+        
+        
+print(unique_styles([ "Dub,Dancehall", "Industrial,Heavy Metal", "Techno,Dubstep", "Synth-pop,Euro-Disco", "Industrial,Techno,Minimal" ]))
+print(unique_styles([ "Soul", "House,Folk", "Trance,Downtempo,Big Beat,House", "Deep House", "Soul" ]) )
+
+3.
+
+
+def bin_search(l,low, high,key):
+
+    if high >= low:
+        mid = int ((low + high) / 2)
+    
+        if key == l[mid]:
+            return mid
+    
+        if l[mid] > key:
+            return bin_search(l,low,mid - 1, key)
+        
+        else:
+            return bin_search(l, mid+1,high, key)
+        
+    else:
+        return -1
+ 
+def is_prime(primes,n):
+    if n in range(2,97):
+        result = bin_search(sorted(primes), 0, len(primes), n)
+        
+        if result > 0:
+            return 'yes'
+        else:
+            return 'no'
+    else:
+        return 'Elemnet is not in the list primes'
+primes = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97]
+
+print(is_prime(primes, 3))
+print(is_prime(primes, 4))
+print(is_prime(primes, 67))
+print(is_prime(primes, 36))
+
+4.
+
+def power_ranger(n,a,b):
+    count = 0
+    a1 = int(a**(1/n))
+    b1 = int(b**(1/n))
+    for i in range(a1,b1+1):
+        if i**n in range(a,b+1):
+            count += 1
+    return count
+
+print(power_ranger(2,49,65))
+print(power_ranger(3, 1, 27))
+print(power_ranger(10, 1, 5))
+print(power_ranger(5,31,33))    
+print(power_ranger(4,250,1300))    
+
+5.
+
+def rearranged_difference(n):
+    n = str(n)
+    nl,nh = '', ''
+   
+    n_high = sorted(n, reverse = True)
+    n_low = sorted(n)
+    
+    for i in n_low:
+        nl += ''.join(i)
+    for j in n_high:
+        nh += ''.join(j)
+    return int(nh) - int(nl)
+    
+print(rearranged_difference(972882))
+print(rearranged_difference(3320707))
+print(rearranged_difference(90010))
